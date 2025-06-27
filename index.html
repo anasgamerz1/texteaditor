@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MaxEditor - Stylish Text Generator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #0b1a2d, #1a2a40);
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      color: #50cfff;
+      text-shadow: 0 0 20px #50cfff, 0 0 30px #50cfff;
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #50cfff;
+      }
+      to {
+        text-shadow: 0 0 25px #50cfff;
+      }
+    }
+
+    input {
+      padding: 10px;
+      width: 90%;
+      max-width: 400px;
+      font-size: 1.2em;
+      border-radius: 8px;
+      border: none;
+      margin: 20px 0;
+      outline: none;
+      text-align: center;
+    }
+
+    .output {
+      font-size: 2em;
+      font-family: cursive;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #50cfff;
+      color: black;
+      font-weight: bold;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #3cc4ff;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+      }
+      .output {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>MaxEditor</h1>
+  <p style="font-size: 1.2em;">𝓔𝓷𝓽𝓮𝓻 𝓨𝓸𝓾𝓻 𝓣𝓮𝔁𝓽</p>
+  <input type="text" id="textInput" placeholder="Type something..." oninput="convertText()" />
+  <div class="output" id="outputText">𝓢𝓽𝔂𝓵𝓲𝓼𝓱</div>
+  <button onclick="copyText()">Copy</button>
+
+  <script>
+    function convertText() {
+      const input = document.getElementById("textInput").value;
+      const stylish = [...input].map(char => fancyMap[char] || char).join('');
+      document.getElementById("outputText").innerText = stylish || "𝓢𝓽𝔂𝓵𝓲𝓼𝓱";
+    }
+
+    function copyText() {
+      const text = document.getElementById("outputText").innerText;
+      navigator.clipboard.writeText(text);
+      alert("Copied: " + text);
+    }
+
+    const fancyMap = {
+      A: '𝓐', B: '𝓑', C: '𝓒', D: '𝓓', E: '𝓔', F: '𝓕', G: '𝓖', H: '𝓗',
+      I: '𝓘', J: '𝓙', K: '𝓚', L: '𝓛', M: '𝓜', N: '𝓝', O: '𝓞', P: '𝓟',
+      Q: '𝓠', R: '𝓡', S: '𝓢', T: '𝓣', U: '𝓤', V: '𝓥', W: '𝓦', X: '𝓧',
+      Y: '𝓨', Z: '𝓩', a: '𝓪', b: '𝓫', c: '𝓬', d: '𝓭', e: '𝓮', f: '𝓯',
+      g: '𝓰', h: '𝓱', i: '𝓲', j: '𝓳', k: '𝓴', l: '𝓵', m: '𝓶', n: '𝓷',
+      o: '𝓸', p: '𝓹', q: '𝓺', r: '𝓻', s: '𝓼', t: '𝓽', u: '𝓾', v: '𝓿',
+      w: '𝔀', x: '𝔁', y: '𝔂', z: '𝔃'
+    };
+  </script>
+
+</body>
+</html>
